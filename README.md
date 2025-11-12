@@ -1,88 +1,177 @@
 <a id="readme-top"></a>
 
 <div align="center">
-  <h1 align="center">Bias Detection and Mitigation in Large Language Models.</h1>
+  <h1 align="center">Bias Detection and Mitigation in Large Language Models</h1>
   <p align="center">
-    59000 - Natural Language Processing - Course Project
+    A systematic approach to identify, quantify, and mitigate biases in Large Language Models
     <br />
-    <a href="https://github.com/ChiragBellara/Bias_Detection_And_Mitigation_In_LLMs/blob/main/Outcomes/Bias_and_Mitigation_in_LLMs.pdf"><strong>Read the research paper.</strong></a>
-    <br />
-    <br />
+    <a href="research_paper.pdf"><strong>Read the research paper »</strong></a>
   </p>
 </div>
 
+## Table of Contents
+- [Overview](#overview)
+- [Installation](#installation)
+- [Folder Structure](#folder-structure)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Methodology](#methodology)
+- [Results](#results)
+- [Conclusion](#conclusion)
+
+## Overview
+Large language models (LLMs) have revolutionized natural language processing with remarkable capabilities in text generation, question answering, and language understanding. However, these models can unintentionally learn and perpetuate societal biases from their training data, leading to unfair or discriminatory outputs.
+
+This project systematically addresses bias in LLMs through three key phases:
+1. **Detection** - Identifying bias using carefully crafted prompts
+2. **Quantification** - Measuring bias using stereotype scores and toxicity metrics
+3. **Mitigation** - Implementing strategies like Counterfactual Data Augmentation and AI Fairness 360
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
+- CUDA-compatible GPU (optional, for faster processing)
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Bias_Detection_And_Mitigation_In_LLMs.git
+cd Bias_Detection_And_Mitigation_In_LLMs-main
+```
+
+2. Install required dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. (Optional) Install Jupyter for running notebooks:
+```bash
+pip install jupyter notebook
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Folder Structure
+```
+Bias_Detection_And_Mitigation_In_LLMs-main/
+│
+├── Code/
+│   ├── Stereotype_Score_Calculation.ipynb    # Bias quantification using log-probability
+│   └── Toxicity_Score_Calculation.ipynb      # Toxicity analysis using Evaluate library
+│
+├── Data/
+│   └── crows_pairs_anonymized.csv            # CrowS-Pairs benchmark dataset
+│
+├── requirements.txt                           # Python dependencies
+├── research_paper.pdf                         # Detailed research documentation
+└── README.md                                  # Project documentation
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Usage
+
+### Running Bias Analysis
+
+1. **Stereotype Score Calculation:**
+   ```bash
+   jupyter notebook Code/Stereotype_Score_Calculation.ipynb
+   ```
+   This notebook calculates stereotype and anti-stereotype scores for various language models using log-probability metrics.
+
+2. **Toxicity Score Calculation:**
+   ```bash
+   jupyter notebook Code/Toxicity_Score_Calculation.ipynb
+   ```
+   This notebook evaluates model outputs for toxic and offensive content using the Hugging Face Evaluate library.
+
+### Dataset
+The project uses the **CrowS-Pairs** dataset, which contains sentence pairs designed to measure stereotypical biases across nine categories including race, gender, age, religion, and more.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Technologies Used
 [![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org/)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-FF9900?style=for-the-badge)](https://huggingface.co/docs/transformers/en/model_doc/bert)
-[![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/)
-![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 
-## Overview
-Large language models (LLMs) have revolutionized the field of natural language processing, enabling remarkable capabilities in text generation, question answering, and language understanding. However, these powerful models, trained on vast amounts of data, can unintentionally learn and perpetuate societal biases present in their training corpus. These biases can manifest as unfair or discriminatory patterns in the model’s outputs, potentially leading to harmful outcomes and undermining trust in AI systems.
+**Key Libraries:**
+- `transformers` - Pre-trained language model implementations
+- `torch` - Deep learning framework
+- `evaluate` - Model evaluation metrics
+- `datasets` - Dataset loading and processing
+- `pandas` & `numpy` - Data manipulation
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Problem Statement
 Large Language models are trained with a large amount of unsupervised data. If the training data used for LLMs contain unrepresentative samples or biases, naturally, the model will inherit and learn these biases. These can result in potential bias when the end user uses these biased models.
 
-This project aims to systematically identify, quantify, and mitigate the biases present in Large Language Models. By exploring various aspects of bias in LLMs, we seek to enhance the fairness and inclusivity of these models, ultimately improving their reliability and trustworthiness. The key objectives of this project are as follows:
-<ol>
-  <li><b>Bias Identification:</b> Analyze model outputs to detect and categorize types of biases, such as gender, racial, and cultural biases.</li>
-  <li><b>Bias Quantification:</b> Compare the performance of different LLMs to understand the variations in learned biases.</li>
-  <li><b>Bias Mitigation Strategies:</b>  Evaluate various strategies to minimize and mitigate biases, including data preprocessing, model fine-tuning, and post-processing techniques.</li>
-</ol>
+**Project Objectives:**
+- **Bias Identification** - Detect and categorize gender, racial, and cultural biases in model outputs
+- **Bias Quantification** - Compare bias levels across different LLMs using standardized metrics
+- **Bias Mitigation** - Evaluate data preprocessing, fine-tuning, and post-processing techniques
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Methodology
-In this study, we will be exploring three major fronts of bias and mitigation in large language models. For each of these fronts, we will be following certain methodologies and experiments that would give us further insight into the data, the behavior of the models, and the patterns being used to generate this biased text.
-<ol>
-  <li>Scrutinize: Finding out if there is any bias.
-  
-To detect bias, the methodology involves crafting careful prompts to trigger biased responses from language models, such as using gender stereotypes or sociopolitical stances. These prompts are then evaluated across multiple models, with generated outputs manually inspected for signs of unfair bias.</li>
-  <li>Quantify: To quantify the degree of bias present. 
-    
-The methodology involves using benchmark datasets like CrowS-Pairs and BOLD that are carefully curated to test for specific biases like gender, profession, and stereotype associations. Pre-trained language models are evaluated on these datasets by computing metrics such as toxicity scores that measure unsafe/offensive content and bias scores that quantify stereotypical vs. anti-stereotypical associations using techniques like likelihood ratios or log probabilities</li>
-  <li>Mitigate: Provide strategies to minimize, mitigate, and counter the bias present.
-    
-The key strategies to mitigate biases in large language models involve data augmentation and optimization techniques. Counterfactual data augmentation (CDA) aims to reduce biases by generating counterfactual examples that challenge stereotypical assumptions during fine-tuning. Toolkits like AI Fairness 360 provide a range of pre-processing, in-processing, and post-processing methods to modify the training data, learning procedure, or model outputs to align with fairness constraints.</li>
-</ol>
+
+Our three-phase approach systematically addresses bias in LLMs:
+
+### 1. Scrutinize - Detecting Bias
+Craft targeted prompts to trigger biased responses (e.g., gender stereotypes, sociopolitical stances) and manually inspect outputs across multiple models for unfair bias patterns.
+
+### 2. Quantify - Measuring Bias
+Use benchmark datasets (CrowS-Pairs, BOLD) to evaluate models with:
+- **Toxicity Scores** - Measure unsafe/offensive content
+- **Stereotype Scores** - Quantify stereotypical vs. anti-stereotypical associations using log-probability metrics
+
+### 3. Mitigate - Reducing Bias
+Implement strategies to minimize bias:
+- **Counterfactual Data Augmentation (CDA)** - Generate counterfactual examples during fine-tuning
+- **AI Fairness 360** - Apply pre-processing, in-processing, and post-processing fairness methods
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 ## Results
-### Project Update 1 <a href="https://github.com/ChiragBellara/Bias_Detection_And_Mitigation_In_LLMs/blob/main/Outcomes/Project_Update_1.pdf"><strong>(Paper)</strong></a>
-For this update, we concentrated on conducting literature reviews and examining existing research on bias detection in language models. Our methodology is divided into three phases, and in this first phase, we focused on scrutinizing potential biases. Specifically, we explored various techniques and approaches to intentionally prompt widely used large language models (LLMs) to produce biased outcomes.
 
-<div align="center">
-    <img width="720" alt="image" src="https://github.com/user-attachments/assets/a332dbcd-d49a-45f6-9686-b08947f9992a">
-    <div>Pre-trained language models exhibit diverse viewpoints on social and economic issues.</div>
-</div>
+### Models Evaluated
+- **ALBERT** - Exhibited highest bias levels across metrics
+- **BERT** - Moderate bias with balanced performance
+- **XLNet** - Lower bias but limited capacity
+- **GPT** - Best performance with minimal bias
 
+### Key Findings
 
-### Project Update 2 <a href="https://github.com/ChiragBellara/Bias_Detection_And_Mitigation_In_LLMs/blob/main/Outcomes/Project_Update_2.pdf"><strong>(Paper)</strong></a>
-In Update 1, we successfully demonstrated that large language models do exhibit biases in their responses. The next critical question is: to what extent are these models biased? For Project Update 2, we advanced to the next phase—quantifying this bias. We explored various methods for assigning a numerical value to measure the degree of bias in the models. To achieve this, we employed the Stereotype Log-Probability Score and utilized Hugging Face's Evaluate library to quantify the bias effectively.
+**Phase 1: Bias Detection**
+Pre-trained language models demonstrate diverse viewpoints on social and economic issues, revealing underlying biases in their responses to targeted prompts.
 
-<div align="center">
-    <img width="720" alt="image" src="https://github.com/user-attachments/assets/f65e2ef5-97ad-433f-82bc-ba89f774b56a">
-    <div>Bias scores for various models, calculated using the Evaluate library.</div>
-</div>
-</br></br>
-<div align="center">
-    <img width="720" alt="image" src="https://github.com/user-attachments/assets/1fc1cde7-d450-4fec-8b32-f4d354d69f91">
-    <div>Stereotype and Anti-stereotype scores for various models, </br>calculated using log-probability of the model producing a stereotyped outcome.</div>
-</div>
+**Phase 2: Bias Quantification**
+- Models show varying degrees of bias when evaluated using the CrowS-Pairs dataset
+- Stereotype log-probability scores effectively quantify stereotypical vs. anti-stereotypical associations
+- Toxicity scores from Evaluate library measure offensive content generation
 
-### Project Update 3
-Having established both the presence and extent of bias in these language models, the final step is to propose strategies for mitigating it. Recognizing that the bias in model outcomes largely stems from the inherent biases within the training data, our objective is to pre-process this data to eliminate these underlying biases. To achieve this, we recommend two specific methods:
-1. <b>Counterfactual Data Augmentation</b></br>
-  We augment the training data by adding new samples derived from the existing data, making controlled adjustments to challenge potential biases. This approach prevents the model from associating specific data with particular groups, thereby reducing bias. For example, we generate sentences that depict people in non-stereotypical roles, such as, "John, a skilled nurse, gently tended to the elderly patient's wounds." This ensures that the model learns to avoid reinforcing stereotypes.
-2. <b>IBM's AI Fairness 360 toolkit</b></br>
-The AI Fairness 360 (AIF360) toolkit is an extensible open-source library that offers a range of techniques developed by the research community to detect and mitigate bias in machine learning models throughout the AI application lifecycle. This toolkit allows users to assess their models for various biases and apply techniques to reduce these biases, fostering fairer, more equitable, and trustworthy AI systems. By integrating AIF360 into our workflow, we can effectively identify and mitigate data-based biases during the pre-processing steps, ensuring a more balanced foundation for model training.
+**Phase 3: Mitigation Strategies**
+- **Counterfactual Data Augmentation**: Generate non-stereotypical examples (e.g., "John, a skilled nurse, gently tended to the elderly patient's wounds")
+- **AI Fairness 360**: Comprehensive toolkit for detecting and mitigating bias throughout the AI lifecycle
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Conclusion
-The evaluated models exhibit varying degrees of bias, with ALBERT showing the highest levels of bias across all three metrics. ALBERT's extensive parameter count may have inadvertently magnified the biases present in its pre-training data, enabling it to capture and amplify biased patterns more effectively.
-In contrast, GPT demonstrated the best performance with the least bias. While smaller models like XLNet may show reduced biases, their overall performance and ability to handle complex tasks could be limited compared to their larger counterparts.
+
+The evaluation reveals varying degrees of bias across language models:
+- **ALBERT** shows the highest bias levels, possibly due to its extensive parameter count amplifying biases from pre-training data
+- **GPT** demonstrates the best performance with minimal bias
+- Trade-off exists between model size and bias: smaller models (XLNet) show reduced bias but may have limited capabilities
+
+**Recommendations:**
+- Implement counterfactual data augmentation during training
+- Use AI Fairness 360 for systematic bias detection and mitigation
+- Balance model capacity with fairness considerations
+- Continuously evaluate models on diverse benchmark datasets
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
